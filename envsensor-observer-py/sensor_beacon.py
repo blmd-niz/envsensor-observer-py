@@ -45,8 +45,9 @@ class SensorBeacon:
     sensor_type = "UNKNOWN"
     gateway = "UNKNOWN"
 
-    def __init__(self, bt_address_s, sensor_type_s, gateway_s, pkt):
+    def __init__(self, bt_address_s, sensor_type_s, gateway_s, pkt, alias_name=''):
         self.bt_address = bt_address_s
+        self.alias_name = alias_name
 
         if ((sensor_type_s == "IM") or (sensor_type_s == "EP")):
             self.seq_num = str_util.c2B(pkt[7])
@@ -227,6 +228,7 @@ class SensorBeacon:
             'gateway': self.gateway,
             'sensor_type': self.sensor_type,
             'bt_address': self.bt_address,
+            'alias_name': self.alias_name,
             'temperature': self.val_temp,
             'humidity': self.val_humi,
             'light': self.val_light,
@@ -257,7 +259,8 @@ class SensorBeacon:
                 "tags": {
                     "gateway": self.gateway,
                     "sensor_type": self.sensor_type,
-                    "bt_address": self.bt_address
+                    "bt_address": self.bt_address,
+                    "alias_name": self.alias_name
                 },
                 "fields": {
                     "temperature": self.val_temp,
@@ -289,6 +292,7 @@ class SensorBeacon:
         print "\tgateway = ", self.gateway
         print "\ttype = ", self.sensor_type
         print "\tbt_address = ", self.bt_address
+        print "\tbt_address = ", self.alias_name
         print "\tseq_num = ", self.seq_num
         print "\tval_temp = ", self.val_temp
         print "\tval_humi = ", self.val_humi
@@ -318,6 +322,7 @@ class SensorBeacon:
         str_data = str(self.tick_last_update) + "," + \
                    str(self.gateway) + "," + \
                    str(self.bt_address) + "," + \
+                   str(self.alias_name) + "," + \
                    str(self.sensor_type) + "," + \
                    str(self.rssi) + "," + \
                    str(self.distance) + "," + \
@@ -347,6 +352,7 @@ def csv_header():
     str_head = "Time" + "," + \
                "Gateway" + "," + \
                "Address" + "," + \
+               "Alias Name" + "," + \
                "Type" + "," + \
                "RSSI (dBm)" + "," + \
                "Distance (m)" + "," + \

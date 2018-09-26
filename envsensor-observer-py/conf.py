@@ -7,6 +7,11 @@ import os
 # Bluetooth adaptor
 BT_DEV_ID = 0
 
+# Alias name for ease of handling many sensors
+ALIAS = {
+    'C639D1249485': 'Sensor1',
+}
+
 # time interval for sensor status evaluation (sec.)
 CHECK_SENSOR_STATE_INTERVAL_SECONDS = 300
 INACTIVE_TIMEOUT_SECONDS = 60
@@ -29,17 +34,17 @@ FLUENTD_PORT = 24224  # enter port number of fluent daemon
 
 # fluent-plugin-influxdb (when using influxDB through fluentd.)
 FLUENTD_INFLUXDB = False
-FLUENTD_INFLUXDB_ADDRESS = "xxx.xxx.xxx.xxx"  # enter IP address of Cloud Server
+FLUENTD_INFLUXDB_ADDRESS = "localhost"  # enter IP address of Cloud Server
 FLUENTD_INFLUXDB_PORT_STRING = "8086"  # enter port number string of influxDB
 FLUENTD_INFLUXDB_DATABASE = "xxxxxxxx"  # enter influxDB database name
 
 
 # uploading data to the cloud (required influxDB 0.9 or higher)
-INFLUXDB_OUTPUT = False
+INFLUXDB_OUTPUT = True
 # InfluxDB
-INFLUXDB_ADDRESS = "xxx.xxx.xxx.xxx"  # enter IP address of influxDB
+INFLUXDB_ADDRESS = "localhost"  # enter IP address of influxDB
 INFLUXDB_PORT = 8086  # enter port number of influxDB
-INFLUXDB_DATABASE = "xxxxxxxx"  # enter influxDB database name
-INFLUXDB_MEASUREMENT = "xxxxxxxx"  # enter measurement name
-INFLUXDB_USER = "root"  # enter influxDB username
-INFLUXDB_PASSWORD = "root"  # enter influxDB user password
+INFLUXDB_DATABASE = "mitakadb"  # enter influxDB database name
+INFLUXDB_MEASUREMENT = "living"  # enter measurement name
+INFLUXDB_USER = "mitaka"  # enter influxDB username
+INFLUXDB_PASSWORD = "mitaka"  # enter influxDB user password

@@ -109,7 +109,9 @@ def parse_events(sock, loop_count=10):
                     report["peer_bluetooth_address_s"],
                     ble.classify_beacon_packet(report),
                     GATEWAY,
-                    report["payload_binary"])
+                    report["payload_binary"],
+                    alias_name=conf.ALIAS[report["peer_bluetooth_address_s"]] \
+                               if report["peer_bluetooth_address_s"] in conf.ALIAS else '')
 
                 index = find_sensor_in_list(sensor, sensor_list)
 
